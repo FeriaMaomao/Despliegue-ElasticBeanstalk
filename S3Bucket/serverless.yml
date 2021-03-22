@@ -2,8 +2,6 @@ service:
   # Define Service Name
   name: stack-s3bucket-${self:provider.stage}
 
-frameworkVersion: '>=2.0.0 <2.4.0'
-
 custom:
   # Set S3 Bucket Name
   s3BucketName: s3-bucket-eb-${self:provider.stage}
@@ -39,5 +37,5 @@ package:
 # The "Resources" separated with CloudFormation templates
 resources:
   - Resources:
-  - ${file(S3Bucket/s3-bucket.yml)}
-  - ${file(S3Bucket/s3-policy.yml)}
+  - ${file(s3-bucket.yml)}
+  - ${file(s3-policy.yml)}

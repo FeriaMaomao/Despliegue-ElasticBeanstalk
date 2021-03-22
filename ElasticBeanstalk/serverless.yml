@@ -2,8 +2,6 @@ service:
   # Define Service Name
   name: stack-elastic-beanstalk-${self:provider.stage}
 
-frameworkVersion: '>=2.0.0 <2.4.0'
-
 custom:
   # Set Elastic Beanstalk Name
   elasticBeanstalkName: elasticbeanstalk-grafana-${self:provider.stage}
@@ -45,6 +43,6 @@ package:
 # The "Resources" separated with CloudFormation templates
 resources:
   - Resources:
-  - ${file(ElasticBeanstalk/eb-appl.yml)}
-  - ${file(ElasticBeanstalk/eb-app-version.yml)}
-  - ${file(ElasticBeanstalk/eb-app-env.yml)}
+  - ${file(eb-app.yml)}
+  - ${file(eb-app-version.yml)}
+  - ${file(eb-app-env.yml)}

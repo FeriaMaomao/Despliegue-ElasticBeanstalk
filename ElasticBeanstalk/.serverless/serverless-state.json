@@ -1,0 +1,161 @@
+{
+  "service": {
+    "service": "stack-elastic-beanstalk-dev",
+    "serviceObject": {
+      "name": "stack-elastic-beanstalk-dev"
+    },
+    "provider": {
+      "name": "aws",
+      "runtime": "nodejs14.x",
+      "stage": "dev",
+      "region": "us-east-1",
+      "stackName": "stack-elastic-beanstalk-dev",
+      "memorySize": 512,
+      "timeout": 10,
+      "deploymentBucket": "tv-s3-bucket",
+      "variableSyntax": "\\${([^{}:]+?(?:\\(|:)(?:[^:{}][^{}]*?)?)}",
+      "versionFunctions": true,
+      "deploymentBucketObject": {
+        "name": "tv-s3-bucket"
+      },
+      "compiledCloudFormationTemplate": {
+        "AWSTemplateFormatVersion": "2010-09-09",
+        "Description": "The AWS CloudFormation template for this Serverless application",
+        "Resources": {
+          "Application": {
+            "Type": "AWS::ElasticBeanstalk::Application",
+            "Properties": {
+              "ApplicationName": "elasticbeanstalk-grafana-dev",
+              "Description": "AWS Elastic Beanstalk Docker Sample Application"
+            }
+          },
+          "ApplicationVersion": {
+            "Type": "AWS::ElasticBeanstalk::ApplicationVersion",
+            "Properties": {
+              "ApplicationName": {
+                "Ref": "Application"
+              },
+              "Description": "Version 1.0",
+              "SourceBundle": {
+                "S3Bucket": "s3-bucket-eb-dev",
+                "S3Key": "Dockerrun.aws.json"
+              }
+            }
+          },
+          "ApplicationEnv": {
+            "Type": "AWS::ElasticBeanstalk::Environment",
+            "Properties": {
+              "ApplicationName": {
+                "Ref": "Application"
+              },
+              "Description": "AWS Elastic Beanstalk Environment running Docker",
+              "SolutionStackName": "64bit Amazon Linux 2 v3.2.5 running Docker",
+              "VersionLabel": {
+                "Ref": "ApplicationVersion"
+              },
+              "OptionSettings": [
+                {
+                  "Namespace": "aws:autoscaling:launchconfiguration",
+                  "OptionName": "IamInstanceProfile",
+                  "Value": "aws-elasticbeanstalk-ec2-role"
+                }
+              ]
+            }
+          }
+        },
+        "Outputs": {
+          "ServerlessDeploymentBucketName": {
+            "Value": "tv-s3-bucket"
+          }
+        }
+      }
+    },
+    "custom": {
+      "elasticBeanstalkName": "elasticbeanstalk-grafana-dev",
+      "s3BucketName": "s3-bucket-eb-dev",
+      "SolutionStackName": "64bit Amazon Linux 2 v3.2.5 running Docker",
+      "Description": "AWS Elastic Beanstalk Environment running Docker"
+    },
+    "pluginsData": {},
+    "functions": {},
+    "resources": {
+      "Resources": {
+        "Application": {
+          "Type": "AWS::ElasticBeanstalk::Application",
+          "Properties": {
+            "ApplicationName": "elasticbeanstalk-grafana-dev",
+            "Description": "AWS Elastic Beanstalk Docker Sample Application"
+          }
+        },
+        "ApplicationVersion": {
+          "Type": "AWS::ElasticBeanstalk::ApplicationVersion",
+          "Properties": {
+            "ApplicationName": {
+              "Ref": "Application"
+            },
+            "Description": "Version 1.0",
+            "SourceBundle": {
+              "S3Bucket": "s3-bucket-eb-dev",
+              "S3Key": "Dockerrun.aws.json"
+            }
+          }
+        },
+        "ApplicationEnv": {
+          "Type": "AWS::ElasticBeanstalk::Environment",
+          "Properties": {
+            "ApplicationName": {
+              "Ref": "Application"
+            },
+            "Description": "AWS Elastic Beanstalk Environment running Docker",
+            "SolutionStackName": "64bit Amazon Linux 2 v3.2.5 running Docker",
+            "VersionLabel": {
+              "Ref": "ApplicationVersion"
+            },
+            "OptionSettings": [
+              {
+                "Namespace": "aws:autoscaling:launchconfiguration",
+                "OptionName": "IamInstanceProfile",
+                "Value": "aws-elasticbeanstalk-ec2-role"
+              }
+            ]
+          }
+        }
+      },
+      "Outputs": {}
+    },
+    "configValidationMode": "warn",
+    "serviceFilename": "serverless.yml",
+    "layers": {},
+    "initialServerlessConfig": {
+      "service": {
+        "$ref": "$[\"service\"][\"serviceObject\"]"
+      },
+      "custom": {
+        "$ref": "$[\"service\"][\"custom\"]"
+      },
+      "provider": {
+        "$ref": "$[\"service\"][\"provider\"]"
+      },
+      "package": {
+        "include": [
+          "**.yml",
+          "README.md"
+        ],
+        "exclude": [
+          ".git/**"
+        ],
+        "excludeDevDependencies": true,
+        "deploymentBucket": "tv-s3-bucket",
+        "artifactDirectoryName": "serverless/stack-elastic-beanstalk-dev/dev/1616401957009-2021-03-22T08:32:37.009Z"
+      },
+      "resources": {
+        "$ref": "$[\"service\"][\"resources\"]"
+      }
+    },
+    "isDashboardMonitoringPreconfigured": false
+  },
+  "package": {
+    "artifactDirectoryName": "serverless/stack-elastic-beanstalk-dev/dev/1616401957009-2021-03-22T08:32:37.009Z",
+    "artifact": ""
+  }
+}

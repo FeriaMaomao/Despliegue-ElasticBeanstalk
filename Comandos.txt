@@ -1,0 +1,7 @@
+cd Desktop\Prueba\prueba-tecnica-teravision
+cd S3Bucket
+sls deploy --stage dev --region us-east-1 --verbose
+aws s3 --region us-east-1 cp Dockerrun.aws.json s3://s3-bucket-eb-dev
+cd ..
+cd ElasticBeanstalk
+sls deploy --stage dev --region us-east-1 --verbose

@@ -1,5 +1,5 @@
 Resources:
-    ApplicationVersion:
+  ApplicationVersion:
     Type: AWS::ElasticBeanstalk::ApplicationVersion
     Properties:
       ApplicationName: !Ref Application
