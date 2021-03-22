@@ -6,12 +6,14 @@ Resources:
     # Properties Deploy Service
     Properties:
       AccessControl: PublicRead
-      BucketName: tv-s3-bucket
+      BucketName: ${file(serverless.yml):custom.s3BucketName}
+      # Set Policy Access
       PublicAccessBlockConfiguration:
         BlockPublicAcls: false
         BlockPublicPolicy: false
         IgnorePublicAcls: false
         RestrictPublicBuckets: false
+      # Set Tags Deploy
       Tags:
         - Key: Name
           Value: S3-Bucket-WebApp

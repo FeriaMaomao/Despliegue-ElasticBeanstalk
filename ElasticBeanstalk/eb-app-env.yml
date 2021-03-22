@@ -3,8 +3,8 @@ Resources:
     Type: 'AWS::ElasticBeanstalk::Environment'
     Properties:
       ApplicationName: !Ref Application
-      Description: ${self:custom.Description}
-      SolutionStackName: ${self:custom.SolutionStackName}
+      Description: ${file(serverless.yml):custom.Description}
+      SolutionStackName: ${file(serverless.yml):custom.SolutionStackName}
       VersionLabel: !Ref ApplicationVersion
       OptionSettings:
         - Namespace: 'aws:autoscaling:launchconfiguration'
