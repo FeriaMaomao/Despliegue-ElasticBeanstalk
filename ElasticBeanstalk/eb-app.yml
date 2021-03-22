@@ -1,0 +1,6 @@
+Resources:
+    Application:
+    Type: 'AWS::ElasticBeanstalk::Application'
+    Properties:
+      ApplicationName: ${self:custom.elasticBeanstalkName}
+      Description: AWS Elastic Beanstalk Docker Sample Application

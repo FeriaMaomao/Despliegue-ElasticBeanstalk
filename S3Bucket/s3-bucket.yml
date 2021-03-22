@@ -1,0 +1,17 @@
+Resources:
+  # Resources name
+  S3BucketResource:
+    # Resource Type
+    Type: 'AWS::S3::Bucket'
+    # Properties Deploy Service
+    Properties:
+      AccessControl: PublicRead
+      BucketName: tv-s3-bucket
+      PublicAccessBlockConfiguration:
+        BlockPublicAcls: false
+        BlockPublicPolicy: false
+        IgnorePublicAcls: false
+        RestrictPublicBuckets: false
+      Tags:
+        - Key: Name
+          Value: S3-Bucket-WebApp

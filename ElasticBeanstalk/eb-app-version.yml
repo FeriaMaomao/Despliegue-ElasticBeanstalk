@@ -1,0 +1,9 @@
+Resources:
+    ApplicationVersion:
+    Type: AWS::ElasticBeanstalk::ApplicationVersion
+    Properties:
+      ApplicationName: !Ref Application
+      Description: Version 1.0
+      SourceBundle:
+        S3Bucket: ${self:custom.s3BucketName}
+        S3Key: Dockerrun.aws.json

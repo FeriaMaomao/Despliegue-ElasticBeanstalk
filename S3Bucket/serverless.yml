@@ -1,0 +1,43 @@
+service:
+  # Define Service Name
+  name: stack-s3bucket-${self:provider.stage}
+
+frameworkVersion: '>=2.0.0 <2.4.0'
+
+custom:
+  # Set S3 Bucket Name
+  s3BucketName: s3-bucket-eb-${self:provider.stage}
+
+provider:
+  # Set cloud provider (AWS)
+  name: aws
+  # Set NodeJS runtime version
+  runtime: nodejs14.x
+  # Set the default Stage used. Default is dev
+  stage: ${opt:stage, 'dev'}
+  # Set Region to deploy service. Default is us-east-1
+  region: ${opt:region, 'us-east-1'}
+  # Set custom name for CloudFormation Stack
+  stackName: ${self:service.name}
+  # Set memory size
+  memorySize: 512
+  # Set timeout
+  timeout: 10
+  # Deploy bucket name
+  deploymentBucket:
+    name: tv-s3-bucket
+
+# Define globs that will be excluded / included from the resulting artifact
+package:
+  include:
+    - '**.yml'
+    - 'README.md'
+  exclude:
+    - '.git/**'
+  excludeDevDependencies: true
+
+# The "Resources" separated with CloudFormation templates
+resources:
+  - Resources:
+  - ${file(S3Bucket/s3-bucket.yml)}
+  - ${file(S3Bucket/s3-policy.yml)}

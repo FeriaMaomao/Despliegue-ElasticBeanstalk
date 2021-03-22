@@ -1,0 +1,12 @@
+Resources:
+  ApplicationEnv:
+    Type: 'AWS::ElasticBeanstalk::Environment'
+    Properties:
+      ApplicationName: !Ref Application
+      Description: ${self:custom.Description}
+      SolutionStackName: ${self:custom.SolutionStackName}
+      VersionLabel: !Ref ApplicationVersion
+      OptionSettings:
+        - Namespace: 'aws:autoscaling:launchconfiguration'
+          OptionName: IamInstanceProfile
+          Value: aws-elasticbeanstalk-ec2-role
